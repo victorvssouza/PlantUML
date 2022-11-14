@@ -1,0 +1,17 @@
+@startuml
+start
+:Selecionar Local;
+:Contratar Arquiteto;
+:Desenvolver Projeto;
+repeat:Orçar Projeto;
+backward:Repetir;
+repeat while (Orçamento Validade) is (Não);
+-> Sim;
+fork
+  :Fazer Trabalho no Local;
+fork again
+  :Fazer Trabalho de Vendas;
+end fork
+#palegreen:Concluir Construção;
+stop
+@enduml
