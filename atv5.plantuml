@@ -1,0 +1,56 @@
+@startuml
+package clientes{
+ actor cliente_online
+ actor cliente_fisico
+}
+
+package colaboradores{
+ actor vendedor 
+ actor funcionario_da_produção
+ actor gerente
+ actor fornecedor
+}
+
+package sistemas{
+actor sistema_ecommerce
+actor sistema_ERP
+}
+
+left to right direction
+
+package VENDA_DE_BOLO{
+
+usecase "Venda de loja física"     as UC1
+usecase "Venda de loja virtual"    as UC2
+usecase "Expedição de bolo"        as UC3
+usecase "Contas a pagar e receber" as UC4
+usecase "Fabricação dos bolos"     as UC5
+usecase "Manter estoque"           as UC6
+usecase "Comprar MP"               as UC7
+}
+
+cliente_fisico --> UC1 
+cliente_online --> UC2
+cliente_online --> UC3
+cliente_fisico --> UC3
+
+vendedor --> UC1
+vendedor --> UC3
+
+funcionario_da_produção --> UC4
+funcionario_da_produção --> UC5
+funcionario_da_produção --> UC6
+
+gerente ---> UC4
+gerente ---> UC6
+
+fornecedor --> UC7
+
+UC2 <--- sistema_ecommerce
+UC4 <--- sistema_ecommerce
+UC5 <--- sistema_ecommerce
+
+UC4 <-- sistema_ERP
+UC5 <-- sistema_ERP
+UC6 <-- sistema_ERP
+@enduml
